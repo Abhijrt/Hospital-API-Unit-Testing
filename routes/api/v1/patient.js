@@ -17,5 +17,7 @@ router.post(
   patientController.register
 );
 
+router.get("/:id/create_report", patientController.createReport);
+
 // exporting the router to be used in different module or files
 module.exports = router;

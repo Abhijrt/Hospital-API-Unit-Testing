@@ -13,6 +13,12 @@ const usersSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    reports: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Report",
+      },
+    ],
   },
   {
     timestamps: true,
