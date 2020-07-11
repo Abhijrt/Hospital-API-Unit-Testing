@@ -16,5 +16,8 @@ router.use("/doctors", require("./doctors"));
 // using the patient route
 router.use("/patient", require("./patient"));
 
+// using the reports route
+router.use("/reports", require("./reports"));
+
 // exporting the router to be used in different module or files
 module.exports = router;
