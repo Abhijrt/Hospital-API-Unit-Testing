@@ -2,7 +2,7 @@
 const mongoose = require("mongoose");
 
 // creating the new database
-mongoose.connect(`mongodb://localhost/basic-template`);
+mongoose.connect(`mongodb://localhost/hospital-api`);
 
 // connet the database and server
 const db = mongoose.connection;

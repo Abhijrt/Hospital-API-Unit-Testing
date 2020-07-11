@@ -10,8 +10,8 @@ const app = express();
 // tell the server to use database
 const db = require("./config/mongoose");
 
-// tell the server to use the assets
-app.use(express.static("./assets"));
+// to use req parameter for data
+app.use(express.urlencoded());
 
 // tell the app to use the router
 app.use("/", require("./routes"));
