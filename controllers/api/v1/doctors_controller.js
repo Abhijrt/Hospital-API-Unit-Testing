@@ -42,7 +42,7 @@ module.exports.createSession = async function (req, res) {
     return res.json(200, {
       message: "Sign in Successfull",
       data: {
-        token: jwt.sign(doctor.toJSON(), "hospital", { expiresIn: "10000" }),
+        token: jwt.sign(doctor.toJSON(), "hospital", { expiresIn: "100000" }),
       },
     });
   } catch (err) {

@@ -11,14 +11,15 @@ const Doctor = require("../models/doctors");
 
 // optins for the jwtStrategy
 let opts = {
-  jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken,
+  jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
   secretOrKey: "hospital",
 };
 
 // tell passport to use jwt strategy
 passport.use(
   new JWTStrategy(opts, function (jwtPayLoad, done) {
-    Doctor.findOne(jwtPayLoad._id, function (err, user) {
+    console.log(jwtPayLoad._id);
+    Doctor.findById(jwtPayLoad._id, function (err, user) {
       if (err) {
         console.log("Error in finding the user from JWT");
         return;

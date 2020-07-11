@@ -13,5 +13,8 @@ router.get("/", homeController.home);
 // using the doctors route
 router.use("/doctors", require("./doctors"));
 
+// using the patient route
+router.use("/patient", require("./patient"));
+
 // exporting the router to be used in different module or files
 module.exports = router;
