@@ -18,6 +18,6 @@ router.post(
 );
 
 router.get("/:id/create_report", patientController.createReport);
-
+router.get("/:id/all_reports", patientController.allReport);
 // exporting the router to be used in different module or files
 module.exports = router;

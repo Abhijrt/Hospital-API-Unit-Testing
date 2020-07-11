@@ -51,3 +51,17 @@ module.exports.createReport = async function (req, res) {
     });
   }
 };
+
+module.exports.allReport = async function (req, res) {
+  let patient = await User.findById(req.params.id);
+  if (!patient) {
+    return res.json(400, {
+      message: "Patient not Available",
+    });
+  }
+  let reports = await Report.find({ patient: req.params.id });
+  return res.json(200, {
+    message: "All Reports",
+    reports: reports,
+  });
+};
