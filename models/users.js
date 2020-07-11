@@ -1,11 +1,15 @@
 const mongoose = require("mongoose");
-const doctorsSchema = new mongoose.Schema(
+const usersSchema = new mongoose.Schema(
   {
-    name: {
+    username: {
       type: String,
       required: true,
     },
     password: {
+      type: String,
+      required: true,
+    },
+    category: {
       type: String,
       required: true,
     },
@@ -15,6 +19,6 @@ const doctorsSchema = new mongoose.Schema(
   }
 );
 
-const Doctor = mongoose.model("Doctor", doctorsSchema);
+const User = mongoose.model("User", usersSchema);
 
-module.exports = Doctor;
+module.exports = User;

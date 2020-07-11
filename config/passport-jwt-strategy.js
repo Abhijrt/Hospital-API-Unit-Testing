@@ -7,7 +7,7 @@ const JWTStrategy = require("passport-jwt").Strategy;
 const ExtractJWT = require("passport-jwt").ExtractJwt;
 
 // importing the doctor model
-const Doctor = require("../models/doctors");
+const User = require("../models/users");
 
 // optins for the jwtStrategy
 let opts = {
@@ -19,7 +19,7 @@ let opts = {
 passport.use(
   new JWTStrategy(opts, function (jwtPayLoad, done) {
     console.log(jwtPayLoad._id);
-    Doctor.findById(jwtPayLoad._id, function (err, user) {
+    User.findById(jwtPayLoad._id, function (err, user) {
       if (err) {
         console.log("Error in finding the user from JWT");
         return;
