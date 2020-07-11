@@ -9,6 +9,7 @@ const doctorsController = require("../../../controllers/api/v1/doctors_controlle
 
 // when register url call then create a new user
 router.post("/register", doctorsController.register);
+router.post("/login", doctorsController.createSession);
 
 // exporting the router to be used in different module or files
 module.exports = router;

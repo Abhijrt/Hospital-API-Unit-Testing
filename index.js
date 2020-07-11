@@ -13,6 +13,9 @@ const db = require("./config/mongoose");
 // to use req parameter for data
 app.use(express.urlencoded());
 
+// tell the server to use jwt strategy
+const passportJWT = require("./config/passport-jwt-strategy");
+
 // tell the app to use the router
 app.use("/", require("./routes"));
 

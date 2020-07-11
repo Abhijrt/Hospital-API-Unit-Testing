@@ -28,8 +28,6 @@ module.exports.register = async function (req, res) {
       message: "Interval Server Error",
     });
   }
-
-  // return res.json(200, {
-  //   message: "Registration page",
-  // });
 };
+
+module.exports.createSession = function (req, res) {};
