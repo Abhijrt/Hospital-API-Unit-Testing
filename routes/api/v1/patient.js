@@ -17,7 +17,19 @@ router.post(
   patientController.register
 );
 
-router.get("/:id/create_report", patientController.createReport);
-router.get("/:id/all_reports", patientController.allReport);
+router.get(
+  "/:id/create_report",
+  passport.authenticate("jwt", {
+    session: false,
+  }),
+  patientController.createReport
+);
+router.get(
+  "/:id/all_reports",
+  passport.authenticate("jwt", {
+    session: false,
+  }),
+  patientController.allReport
+);
 // exporting the router to be used in different module or files
 module.exports = router;

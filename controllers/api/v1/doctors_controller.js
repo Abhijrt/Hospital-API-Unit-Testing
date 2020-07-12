@@ -4,7 +4,6 @@ const bcrypt = require("bcrypt");
 
 module.exports.register = async function (req, res) {
   try {
-    console.log(req.body);
     if (req.body.password == req.body.confirm_password) {
       let doctor = await User.findOne({ username: req.body.username });
       let password = req.body.password;
@@ -50,7 +49,7 @@ module.exports.createSession = async function (req, res) {
     return res.json(200, {
       message: "Sign in Successfull",
       data: {
-        token: jwt.sign(doctor.toJSON(), "hospital", { expiresIn: "100000" }),
+        token: jwt.sign(doctor.toJSON(), "hospital", { expiresIn: "1000000" }),
       },
     });
   } catch (err) {
