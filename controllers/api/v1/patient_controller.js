@@ -60,6 +60,7 @@ module.exports.allReport = async function (req, res) {
     });
   }
   let reports = await Report.find({ patient: req.params.id });
+
   return res.json(200, {
     message: "All Reports",
     reports: reports,
