@@ -60,9 +60,12 @@ module.exports.allReport = async function (req, res) {
     });
   }
   let reports = await Report.find({ patient: req.params.id });
-
+  var reportsArr = new Array(reports.length);
+  for (let i of reports) {
+    reportsArr.push(i.toObject());
+  }
   return res.json(200, {
     message: "All Reports",
-    reports: reports,
+    reports: reportsArr,
   });
 };
