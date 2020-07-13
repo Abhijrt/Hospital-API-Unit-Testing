@@ -8,7 +8,7 @@ const router = express.Router();
 const patientController = require("../../../controllers/api/v1/patient_controller");
 const passport = require("passport");
 
-// when register url call then create a new user
+// when register url call for patient then create a new user
 router.post(
   "/register",
   passport.authenticate("jwt", {
@@ -17,6 +17,7 @@ router.post(
   patientController.register
 );
 
+// when the create report call for perticular patinet
 router.get(
   "/:id/create_report",
   passport.authenticate("jwt", {
@@ -24,6 +25,8 @@ router.get(
   }),
   patientController.createReport
 );
+
+// when all report url call for perticular patient
 router.get(
   "/:id/all_reports",
   passport.authenticate("jwt", {

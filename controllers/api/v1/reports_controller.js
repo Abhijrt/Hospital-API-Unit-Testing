@@ -1,12 +1,15 @@
+// importing the report model
 const Report = require("../../../models/report");
-const { createIndexes } = require("../../../models/report");
 
+// when a status report url call then this funciton return the response
 module.exports.report = async function (req, res) {
+  // search for the reports for perticular status
   let reports = await Report.find({ status: req.params.status });
+  // creating the new array
   var reportsArr = new Array(reports.length);
   for (let i of reports) {
+    // removing the extra details
     var ans = i.toObject();
-    console.log(ans);
     reportsArr.push(i.toObject());
   }
   return res.status(200).json({

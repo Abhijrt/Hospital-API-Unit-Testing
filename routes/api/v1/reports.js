@@ -5,10 +5,10 @@ const passport = require("passport");
 // taking the router form the express server
 const router = express.Router();
 
-// taking the doctors controller for calling the doctors registration page
+// taking the reports controller for calling the  report
 const reportsController = require("../../../controllers/api/v1/reports_controller");
 
-// when register url call then create a new user
+// when a status report url call
 router.get(
   "/:status",
   passport.authenticate("jwt", {
