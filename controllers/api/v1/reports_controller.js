@@ -11,6 +11,7 @@ module.exports.report = async function (req, res) {
   }
   return res.status(200).json({
     messsage: "All Status",
+    success: true,
     reports: reportsArr,
   });
 };

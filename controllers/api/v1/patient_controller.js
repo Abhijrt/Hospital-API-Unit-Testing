@@ -13,10 +13,12 @@ module.exports.register = async function (req, res) {
     });
     return res.json(200, {
       message: "Patient Registered",
+      success: true,
     });
   }
   return res.json(200, {
     message: "Patient Already Register",
+    success: true,
     data: {
       patient: patient,
     },
@@ -44,6 +46,7 @@ module.exports.createReport = async function (req, res) {
     console.log("four");
     return res.json(200, {
       message: "Report Created SuccessFully!",
+      success: true,
     });
   } catch (err) {
     return res.json(400, {
@@ -66,6 +69,7 @@ module.exports.allReport = async function (req, res) {
   }
   return res.json(200, {
     message: "All Reports",
+    success: true,
     reports: reportsArr,
   });
 };

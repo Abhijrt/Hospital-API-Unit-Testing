@@ -16,6 +16,7 @@ module.exports.register = async function (req, res) {
         });
         return res.status(200).json({
           message: "User Registered SuccessFully!",
+          success: true,
         });
       } else {
         return res.json(400, {
@@ -48,6 +49,7 @@ module.exports.createSession = async function (req, res) {
     }
     return res.json(200, {
       message: "Sign in Successfull",
+      success: true,
       data: {
         token: jwt.sign(doctor.toJSON(), "hospital", { expiresIn: "1000000" }),
       },
