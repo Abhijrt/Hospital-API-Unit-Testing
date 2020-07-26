@@ -4,9 +4,6 @@ const User = require("../../../models/users");
 // importing the report model
 const Report = require("../../../models/report");
 
-// importing the passport
-const passport = require("passport");
-
 // importing the crypto for generating the random passwor din encrypted form
 const crypto = require("crypto");
 
