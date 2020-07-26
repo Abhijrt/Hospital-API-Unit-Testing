@@ -3,7 +3,7 @@ const reportSchema = new mongoose.Schema(
   {
     patient: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      ref: "Patient",
     },
     status: {
       type: String,
@@ -14,9 +14,8 @@ const reportSchema = new mongoose.Schema(
       required: true,
     },
     doctor: {
-      type: String,
-      default: "Normal",
-      required: true,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Doctor",
     },
   },
   {
