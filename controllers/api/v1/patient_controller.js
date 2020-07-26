@@ -51,9 +51,6 @@ module.exports.createReport = async function (req, res) {
       doctor: req.user._id,
       patient: req.params.id,
     });
-    console.log("three");
-    // patient.reports.push(report);
-    // patient.save();
     console.log("four");
     return res.json(200, {
       message: "Report Created SuccessFully!",

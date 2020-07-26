@@ -27,12 +27,6 @@ router.get(
 );
 
 // when all report url call for perticular patient
-router.get(
-  "/:id/all_reports",
-  passport.authenticate("jwt", {
-    session: false,
-  }),
-  patientController.allReport
-);
+router.get("/:id/all_reports", patientController.allReport);
 // exporting the router to be used in different module or files
 module.exports = router;
