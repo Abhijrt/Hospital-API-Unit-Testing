@@ -66,7 +66,7 @@ module.exports.createReport = async function (req, res) {
 // when a all report request come then it show the all report for a perticular patient
 module.exports.allReport = async function (req, res) {
   // finding the Patient
-  let patient = await User.findById(req.params.id);
+  let patient = await Patient.findById(req.params.id);
   // if patient not found then return response
   if (!patient) {
     return res.json(400, {
