@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const patientSchema = new mongoose.Schema(
   {
     phone: {
-      type: String,
+      type: Number,
       required: true,
     },
     doctor: {

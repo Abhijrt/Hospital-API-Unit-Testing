@@ -13,10 +13,9 @@ module.exports.register = async function (req, res) {
   let patient = await Patient.findOne({ username: req.body.username });
   // if patient not found then register it and returning response
   if (!patient) {
-    User.create({
-      username: req.body.username,
-      category: "patient",
-      password: crypto.randomBytes(20).toString("hex"),
+    Patient.create({
+      phone: req.body.phone,
+      doctor: req.user._id,
     });
     return res.json(200, {
       message: "Patient Registered",
