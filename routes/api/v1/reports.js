@@ -9,13 +9,7 @@ const router = express.Router();
 const reportsController = require("../../../controllers/api/v1/reports_controller");
 
 // when a status report url call
-router.get(
-  "/:status",
-  passport.authenticate("jwt", {
-    session: false,
-  }),
-  reportsController.report
-);
+router.get("/:status", reportsController.report);
 
 // exporting the router to be used in different module or files
 module.exports = router;

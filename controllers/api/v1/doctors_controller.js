@@ -1,5 +1,5 @@
 // Importing the user model
-const User = require("../../../models/users");
+const Doctor = require("../../../models/doctor");
 
 // importing the jsonwebtoken for generating the goken
 const jwt = require("jsonwebtoken");
@@ -13,16 +13,15 @@ module.exports.register = async function (req, res) {
     // if password and confirmPassword match then
     if (req.body.password == req.body.confirm_password) {
       // finding the doctor if already registered
-      let doctor = await User.findOne({ username: req.body.username });
+      let doctor = await Doctor.findOne({ username: req.body.username });
       let password = req.body.password;
       // encrypted the password
       let newPassword = await bcrypt.hash(password, 10);
       // if doctor not register already then register it
       if (!doctor) {
-        User.create({
+        Doctor.create({
           username: req.body.username,
           password: newPassword,
-          category: "doctor",
         });
         // sending the response after registering the doctor
         return res.status(200).json({
@@ -30,17 +29,17 @@ module.exports.register = async function (req, res) {
           success: true,
         });
       } else {
-        return res.json(400, {
+        return res.json(200, {
           message: "user Already Present ! Login directly",
         });
       }
     } else {
-      return res.json(400, {
+      return res.json(500, {
         message: "Password and confirm password must be same",
       });
     }
   } catch (err) {
-    return res.json(400, {
+    return res.json(500, {
       message: "Internal Server Error",
     });
   }
@@ -50,7 +49,7 @@ module.exports.register = async function (req, res) {
 module.exports.createSession = async function (req, res) {
   try {
     // finding the doctor that are present in the database or not by username
-    let doctor = await User.findOne({ username: req.body.username });
+    let doctor = await Doctor.findOne({ username: req.body.username });
     // comparing the doctor password and requested password
     let doctorPassword = await bcrypt.compare(
       req.body.password,

@@ -1,5 +1,5 @@
 // importing the user model
-const User = require("../../../models/users");
+const Patient = require("../../../models/patient");
 
 // importing the report model
 const Report = require("../../../models/report");
@@ -10,7 +10,7 @@ const crypto = require("crypto");
 // when a patient register url call then this function register the patient
 module.exports.register = async function (req, res) {
   // finding the patient if alreay register
-  let patient = await User.findOne({ username: req.body.username });
+  let patient = await Patient.findOne({ username: req.body.username });
   // if patient not found then register it and returning response
   if (!patient) {
     User.create({
@@ -37,7 +37,7 @@ module.exports.register = async function (req, res) {
 module.exports.createReport = async function (req, res) {
   try {
     // finding the patient by id
-    let patient = User.findById(req.params.id);
+    let patient = Patient.findById(req.params.id);
     console.log("patient", patient);
     // if patient not available then retunr response
     if (!patient) {
@@ -49,7 +49,7 @@ module.exports.createReport = async function (req, res) {
     let report = await Report.create({
       status: req.body.status,
       date: req.body.date,
-      doctor: req.body.doctor,
+      doctor: req.user._id,
       patient: req.params.id,
     });
     console.log("three");
