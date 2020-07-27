@@ -10,7 +10,7 @@ const crypto = require("crypto");
 // when a patient register url call then this function register the patient
 module.exports.register = async function (req, res) {
   // finding the patient if alreay register
-  let patient = await Patient.findOne({ username: req.body.username });
+  let patient = await Patient.findOne({ phone: req.body.phone });
   // if patient not found then register it and returning response
   if (!patient) {
     Patient.create({
@@ -23,7 +23,7 @@ module.exports.register = async function (req, res) {
     });
   }
   // if patient already register then we just return the details of the patient
-  return res.json(200, {
+  return res.status(200).json({
     message: "Patient Already Register",
     success: true,
     data: {
