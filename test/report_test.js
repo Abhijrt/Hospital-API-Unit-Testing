@@ -20,6 +20,7 @@ const authToken =
 //   testing the reports
 describe("Report API ", () => {
   describe("GET /reports/:status", () => {
+    //   when the perticular status report return
     it("It check for the report acc to the status", (done) => {
       chai
         .request(server)
@@ -29,8 +30,30 @@ describe("Report API ", () => {
           Authorization: `Bearer ${authToken}`,
         })
         .end((err, response) => {
+          //   console.log(response.body);
+          response.should.have.status(200);
+          response.body.should.have.property("message").eq("All Status");
+          response.body.should.have.property("success").eq(true);
+          done();
+        });
+    });
+
+    // if any perticular status report not avaliable
+    it("It check for the report acc to the status is not avaliable", (done) => {
+      chai
+        .request(server)
+        .get("/api/v1/reports/negativeeee")
+        .set({
+          "content-type": "application/x-www-form-urlencoded",
+          Authorization: `Bearer ${authToken}`,
+        })
+        .end((err, response) => {
           console.log(response.body);
           response.should.have.status(200);
+          response.body.should.have
+            .property("message")
+            .eq("Not Available any report");
+          response.body.should.have.property("success").eq(true);
           done();
         });
     });
