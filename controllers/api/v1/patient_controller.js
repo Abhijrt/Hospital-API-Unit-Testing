@@ -27,7 +27,7 @@ module.exports.register = async function (req, res) {
     message: "Patient Already Register",
     success: true,
     data: {
-      patient: patient,
+      patient: patient.toObject(),
     },
   });
 };
