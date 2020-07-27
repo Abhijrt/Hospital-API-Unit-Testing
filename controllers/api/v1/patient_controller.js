@@ -82,7 +82,7 @@ module.exports.allReport = async function (req, res) {
   let patient = await Patient.findById(req.params.id);
   // if patient not found then return response
   if (!patient) {
-    return res.json(400, {
+    return res.json(200, {
       message: "Patient not Available",
     });
   }

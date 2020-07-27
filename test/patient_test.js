@@ -30,25 +30,25 @@ let patient_two = {
 describe("Patient API ", () => {
   // perform test for patient Registration
   describe("GET /api/v1/patient/register", () => {
-    // this is for the newly register patient if new Register is done
-    // it("It return the newly created Patient ", (done) => {
-    // chai
-    //   .request(server)
-    //   .post("/api/v1/patient/register")
-    //   .set({
-    //     "content-type": "application/x-www-form-urlencoded",
-    //     Authorization: `Bearer ${authToken}`,
-    //   })
-    //   .send(patient_one)
-    //   .end((err, response) => {
-    //     response.should.have.status(200);
-    //     response.body.should.have
-    //       .property("message")
-    //       .eq("Patient Registered");
-    //     response.body.should.have.property("success").eq(true);
-    //     done();
-    //   });
-    // });
+    this is for the newly register patient if new Register is done
+    it("It return the newly created Patient ", (done) => {
+    chai
+      .request(server)
+      .post("/api/v1/patient/register")
+      .set({
+        "content-type": "application/x-www-form-urlencoded",
+        Authorization: `Bearer ${authToken}`,
+      })
+      .send(patient_one)
+      .end((err, response) => {
+        response.should.have.status(200);
+        response.body.should.have
+          .property("message")
+          .eq("Patient Registered");
+        response.body.should.have.property("success").eq(true);
+        done();
+      });
+    });
 
     // this is for the older patient if not register just
     it("It return the Older created Patient ", (done) => {
@@ -174,8 +174,22 @@ describe("Patient API ", () => {
             done();
           });
       });
+    });
 
-      //
+    describe("Get /reports/all_reports", () => {
+      // it return the all reports
+      it("It show all the reports", (done) => {
+        chai
+          .request(server)
+          .get("/api/v1/patient/5f1eb1245c893207bba3cf38/all_reports")
+          .end((err, response) => {
+            response.should.have.status(200);
+
+            response.body.should.have.property("message").eq("All Reports");
+            response.body.should.have.property("success").eq(true);
+            done();
+          });
+      });
     });
   });
 });
