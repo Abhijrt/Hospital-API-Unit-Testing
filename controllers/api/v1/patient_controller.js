@@ -89,14 +89,20 @@ module.exports.allReport = async function (req, res) {
   // finding the all reports of the perticluar patient
   let reports = await Report.find({ patient: req.params.id });
   // craeting the new array for all reports without other details
-  var reportsArr = new Array(reports.length);
-  for (let i of reports) {
-    // for removing the extra deatils
-    reportsArr.push(i.toObject());
+  if (reports.length !== 0) {
+    var reportsArr = new Array(reports.length);
+    for (let i of reports) {
+      // for removing the extra deatils
+      reportsArr.push(i.toObject());
+    }
+    return res.json(200, {
+      message: "All Reports",
+      success: true,
+      reports: reportsArr,
+    });
   }
-  return res.json(200, {
-    message: "All Reports",
+  return res.status(200).json({
+    message: "Patient Dont have reports",
     success: true,
-    reports: reportsArr,
   });
 };

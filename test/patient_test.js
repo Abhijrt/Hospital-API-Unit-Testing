@@ -30,24 +30,24 @@ let patient_two = {
 describe("Patient API ", () => {
   // perform test for patient Registration
   describe("GET /api/v1/patient/register", () => {
-    this is for the newly register patient if new Register is done
+    // this is for the newly register patient if new Register is done
     it("It return the newly created Patient ", (done) => {
-    chai
-      .request(server)
-      .post("/api/v1/patient/register")
-      .set({
-        "content-type": "application/x-www-form-urlencoded",
-        Authorization: `Bearer ${authToken}`,
-      })
-      .send(patient_one)
-      .end((err, response) => {
-        response.should.have.status(200);
-        response.body.should.have
-          .property("message")
-          .eq("Patient Registered");
-        response.body.should.have.property("success").eq(true);
-        done();
-      });
+      chai
+        .request(server)
+        .post("/api/v1/patient/register")
+        .set({
+          "content-type": "application/x-www-form-urlencoded",
+          Authorization: `Bearer ${authToken}`,
+        })
+        .send(patient_one)
+        .end((err, response) => {
+          response.should.have.status(200);
+          response.body.should.have
+            .property("message")
+            .eq("Patient Registered");
+          response.body.should.have.property("success").eq(true);
+          done();
+        });
     });
 
     // this is for the older patient if not register just
@@ -186,6 +186,22 @@ describe("Patient API ", () => {
             response.should.have.status(200);
 
             response.body.should.have.property("message").eq("All Reports");
+            response.body.should.have.property("success").eq(true);
+            done();
+          });
+      });
+
+      // if perticular patient report not avaliable
+      it("It test the patient does not have reports", (done) => {
+        chai
+          .request(server)
+          .get("/api/v1/patient/5f1ed13074786818abff7d30/all_reports")
+          .end((err, response) => {
+            console.log(response.body);
+            response.should.have.status(200);
+            response.body.should.have
+              .property("message")
+              .eq("Patient Dont have reports");
             response.body.should.have.property("success").eq(true);
             done();
           });
