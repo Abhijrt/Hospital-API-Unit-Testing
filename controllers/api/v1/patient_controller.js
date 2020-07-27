@@ -40,7 +40,7 @@ module.exports.createReport = async function (req, res) {
     if (!req.body.status || req.body.status.length == 0) {
       return res
         .status(422)
-        .json({ message: "Please enter the status of report" });
+        .json({ message: "Please enter the status of report", success: true });
     }
     // if patient not available then retunr response
     if (!patient) {
@@ -56,7 +56,6 @@ module.exports.createReport = async function (req, res) {
       doctor: req.user._id,
       patient: req.params.id,
     });
-    console.log(report);
     if (report) {
       return res.json(200, {
         message: "Report Created SuccessFully!",
