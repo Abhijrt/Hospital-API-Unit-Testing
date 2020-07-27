@@ -32,22 +32,22 @@ describe("Patient API ", () => {
   describe("GET /api/v1/patient/register", () => {
     // this is for the newly register patient if new Register is done
     // it("It return the newly created Patient ", (done) => {
-    //   chai
-    //     .request(server)
-    //     .post("/api/v1/patient/register")
-    //     .set({
-    //       "content-type": "application/x-www-form-urlencoded",
-    //       Authorization: `Bearer ${authToken}`,
-    //     })
-    //     .send(patient_one)
-    //     .end((err, response) => {
-    //       response.should.have.status(200);
-    //       response.body.should.have
-    //         .property("message")
-    //         .eq("Patient Registered");
-    //       response.body.should.have.property("success").eq(true);
-    //       done();
-    //     });
+    // chai
+    //   .request(server)
+    //   .post("/api/v1/patient/register")
+    //   .set({
+    //     "content-type": "application/x-www-form-urlencoded",
+    //     Authorization: `Bearer ${authToken}`,
+    //   })
+    //   .send(patient_one)
+    //   .end((err, response) => {
+    //     response.should.have.status(200);
+    //     response.body.should.have
+    //       .property("message")
+    //       .eq("Patient Registered");
+    //     response.body.should.have.property("success").eq(true);
+    //     done();
+    //   });
     // });
 
     // this is for the older patient if not register just
