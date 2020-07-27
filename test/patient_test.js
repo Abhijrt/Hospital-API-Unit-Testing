@@ -19,7 +19,7 @@ const authToken =
 
 // patient one input
 let patient_one = {
-  phone: 12365454444,
+  phone: 123451234,
 };
 
 // patinet two input
@@ -53,7 +53,7 @@ describe("Patient API ", () => {
     // this is for the older patient if not register just
     it("It return the Older created Patient ", (done) => {
       chai
-        .request("http://localhost:8000")
+        .request(server)
         .post("/api/v1/patient/register")
         .set("content-type", "application/x-www-form-urlencoded")
         .set({ Authorization: `Bearer ${authToken}` })
@@ -68,6 +68,32 @@ describe("Patient API ", () => {
           response.body.data.should.have.property("patient");
           done();
         });
+    });
+
+    // when a create report call
+    describe("GET /patient/:id/create_report", () => {
+      // this is for the newly created report
+      it("It check for the newly created Reports", (done) => {
+        chai
+          .request(server)
+          .get("/api/v1/patient/5f1eb1245c893207bba3cf38/create_report")
+          .set({
+            "content-type": "application/x-www-form-urlencoded",
+            Authorization: `Bearer ${authToken}`,
+          })
+          .send({
+            status: "Negative",
+            date: "12",
+          })
+          .end((err, response) => {
+            response.should.have.status(200);
+            response.body.should.have
+              .property("message")
+              .eq("Report Created SuccessFully!");
+            response.body.should.have.property("success").eq(true);
+            done();
+          });
+      });
     });
   });
 });

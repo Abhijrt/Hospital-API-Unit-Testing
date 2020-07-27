@@ -37,11 +37,16 @@ module.exports.createReport = async function (req, res) {
   try {
     // finding the patient by id
     let patient = Patient.findById(req.params.id);
-    console.log("patient", patient);
+    if (!req.body.status || req.body.status.length == 0) {
+      return res
+        .status(422)
+        .json({ message: "Please enter the status of report" });
+    }
     // if patient not available then retunr response
     if (!patient) {
-      return res.json(400, {
+      return res.json(200, {
         message: "Patient not Available",
+        success: true,
       });
     }
     // if patient available then create a report
@@ -51,9 +56,15 @@ module.exports.createReport = async function (req, res) {
       doctor: req.user._id,
       patient: req.params.id,
     });
-    console.log("four");
-    return res.json(200, {
-      message: "Report Created SuccessFully!",
+    console.log(report);
+    if (report) {
+      return res.json(200, {
+        message: "Report Created SuccessFully!",
+        success: true,
+      });
+    }
+    return res.status(200).json({
+      message: "Not Created Report",
       success: true,
     });
   } catch (err) {
