@@ -19,7 +19,7 @@ const authToken =
 
 // patient one input
 let patient_one = {
-  phone: 123451234,
+  phone: 1111166666,
 };
 
 // patinet two input
@@ -176,7 +176,7 @@ describe("Patient API ", () => {
       });
     });
 
-    describe("Get /reports/all_reports", () => {
+    describe("Get /reports/:id/all_reports", () => {
       // it return the all reports
       it("It show all the reports", (done) => {
         chai
