@@ -117,6 +117,29 @@ describe("Patient API ", () => {
             done();
           });
       });
+
+      // when the patient id is not valid
+      it("It check for the patient id is not valid", (done) => {
+        chai
+          .request(server)
+          .get("/api/v1/patient/5f1eb1245c893207bba3cf39/create_report")
+          .set({
+            "content-type": "application/x-www-form-urlencoded",
+            Authorization: `Bearer ${authToken}`,
+          })
+          .send({
+            status: "Positive",
+            date: "12",
+          })
+          .end((err, response) => {
+            response.should.have.status(200);
+            response.body.should.have
+              .property("message")
+              .eq("Patient not Available");
+            response.body.should.have.property("success").eq(true);
+            done();
+          });
+      });
       //
     });
   });

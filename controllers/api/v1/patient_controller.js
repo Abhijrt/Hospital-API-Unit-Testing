@@ -36,12 +36,7 @@ module.exports.register = async function (req, res) {
 module.exports.createReport = async function (req, res) {
   try {
     // finding the patient by id
-    let patient = Patient.findById(req.params.id);
-    if (!req.body.status || req.body.status.length == 0) {
-      return res
-        .status(422)
-        .json({ message: "Please enter the status of report", success: true });
-    }
+    let patient = await Patient.findById(req.params.id);
     // if patient not available then retunr response
     if (!patient) {
       return res.json(200, {
@@ -49,6 +44,13 @@ module.exports.createReport = async function (req, res) {
         success: true,
       });
     }
+    if (!req.body.status || req.body.status.length == 0) {
+      return res.status(422).json({
+        message: "Please enter the status of report",
+        success: true,
+      });
+    }
+
     // if patient available then create a report
     let report = await Report.create({
       status: req.body.status,
@@ -67,6 +69,7 @@ module.exports.createReport = async function (req, res) {
       success: true,
     });
   } catch (err) {
+    console.log(err);
     return res.json(400, {
       message: "Internal Server Error",
     });
