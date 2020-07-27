@@ -70,6 +70,22 @@ describe("Patient API ", () => {
         });
     });
 
+    // when the unauthorized user want to create report
+    it("It check for the token is valid or not", (done) => {
+      chai
+        .request(server)
+        .post("/api/v1/patient/register")
+        .set({
+          "content-type": "application/x-www-form-urlencoded",
+          Authorization: `Bearer `,
+        })
+        .send(patient_two)
+        .end((err, response) => {
+          response.should.have.status(401);
+          done();
+        });
+    });
+
     // when a create report call
     describe("GET /patient/:id/create_report", () => {
       // this is for the newly created report
@@ -140,6 +156,25 @@ describe("Patient API ", () => {
             done();
           });
       });
+      // when the unauthorized user want to create report
+      it("It check for the token is valid or not", (done) => {
+        chai
+          .request(server)
+          .get("/api/v1/patient/5f1eb1245c893207bba3cf39/create_report")
+          .set({
+            "content-type": "application/x-www-form-urlencoded",
+            Authorization: `Bearer `,
+          })
+          .send({
+            status: "Positive",
+            date: "12",
+          })
+          .end((err, response) => {
+            response.should.have.status(401);
+            done();
+          });
+      });
+
       //
     });
   });
